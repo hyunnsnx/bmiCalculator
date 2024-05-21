@@ -1,0 +1,76 @@
+//
+//  ViewController.swift
+//  bmi
+//
+//  Created by 배현빈 on 5/21/24.
+//
+
+import UIKit
+
+class ViewController: UIViewController {
+    
+    @IBOutlet weak var heightText: UITextField!
+    @IBOutlet weak var weightText: UITextField!
+    @IBOutlet var blindPassword: UIButton!
+    @IBOutlet var randomBMI: UIButton!
+    @IBOutlet var checkResult: UIButton!
+    
+       
+    @IBAction func bmiResult(_ sender: UIButton) {bmiAlert()
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        heightText.layer.cornerRadius = 10
+        heightText.layer.borderWidth = 1
+        heightText.layer.borderColor = UIColor.purple.cgColor
+        weightText.layer.cornerRadius = 10
+        weightText.layer.borderWidth = 1
+        weightText.layer.borderColor = UIColor.purple.cgColor
+        
+    }
+
+    @IBAction func bmiResultCheck(_ sender: UIButton) {
+        let height = Double(heightText.text!)!
+        let weight = Double(weightText.text!)!
+        let bmi = Double(weight / (height * height))
+    }
+    
+    
+    func bmiAlert() {
+        // 1.
+        let alert = UIAlertController(
+            title: "bmi 확인",
+            message: "당신의 bmi 결과값입니다", /*description 영역 자체를 삭제*/
+            preferredStyle: .alert/*.alert*/)
+        // 액션시트를 사용할 때는 보통 메세지를 작성하지 않음
+        
+        
+        // 2. 버튼 생성
+        let open = UIAlertAction(
+            title: "열기",
+            style: .default)
+        
+        let delete = UIAlertAction(
+            title: "삭제",
+            style: .destructive)
+        
+        let cancel = UIAlertAction(
+            title: "취소",
+            style: .cancel/*.default*/) //스타일이 다름!
+        
+        //3. 버튼 합치기
+        alert.addAction(cancel)
+        alert.addAction(delete)
+        alert.addAction(open)
+        
+        
+        // 4.
+        present(alert, animated: true)
+    }
+    
+}
+   
+
+
